@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val list = arrayListOf(
-            ShoppingItem(android.R.color.holo_purple, "Cocaine"),
+            ShoppingItem(android.R.color.holo_purple, "Lizards"),
             GroceryItem(productName = "Mango", isPerishable = true),
             ClothingItem(productName = "Batman Shirt", size = "X-Large"),
             EntertainmentItem(productName = "Laser pointer that shoots really really far", moreThanTenDollars = true)
