@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.interfaces.dummy.DummyContent
+import com.example.interfaces.model.ListOfVehicles
+import com.example.interfaces.model.Vehicle
 import kotlinx.android.synthetic.main.activity_item_detail.*
 import kotlinx.android.synthetic.main.item_detail.view.*
 
@@ -20,7 +22,7 @@ class ItemDetailFragment : Fragment() {
     /**
      * The dummy content this fragment is presenting.
      */
-    private var item: DummyContent.DummyItem? = null
+    private var item: Vehicle? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,10 +32,11 @@ class ItemDetailFragment : Fragment() {
                 // Load the dummy content specified by the fragment
                 // arguments. In a real-world scenario, use a Loader
                 // to load content from a content provider.
-                item = DummyContent.ITEM_MAP[it.getString(ARG_ITEM_ID)]
-                activity?.toolbar_layout?.title = item?.content
+                item = ListOfVehicles.getVehicle[it.getString(ARG_ITEM_ID)]
+                activity?.toolbar_layout?.title = item?.id
             }
         }
+
     }
 
     override fun onCreateView(
@@ -44,7 +47,12 @@ class ItemDetailFragment : Fragment() {
 
         // Show the dummy content as text in a TextView.
         item?.let {
-            rootView.item_detail.text = it.details
+            rootView.item_detail.text = it.travel()
+        }
+
+        rootView.add_fav.setOnClickListener {
+            item?.favorite = true
+            println(item?.id)
         }
 
         return rootView

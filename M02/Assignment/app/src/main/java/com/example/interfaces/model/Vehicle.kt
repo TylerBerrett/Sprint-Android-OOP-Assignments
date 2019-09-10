@@ -40,7 +40,7 @@ class Plane: Vehicle(), AirTravel {
     }
 
     override fun travel(): String {
-        return "$id weighs $weight pound and travels via ${fly()}"
+        return "$id weighs $weight pound(s) and travels via ${fly()}"
     }
 }
 
@@ -55,7 +55,7 @@ class Dragon: Vehicle(), AirTravel {
     }
 
     override fun travel(): String {
-        return "$id weighs $weight pound and travels via ${fly()}"
+        return "$id weighs $weight pound(s) and travels via ${fly()}"
     }
 }
 
@@ -70,7 +70,7 @@ class MasterCraft: Vehicle(), WaterTravel {
     }
 
     override fun travel(): String {
-        return "$id weighs $weight pound and travels via ${sail()}"
+        return "$id weighs $weight pound(s) and travels via ${sail()}"
     }
 }
 class Shark: Vehicle(), WaterTravel {
@@ -83,7 +83,7 @@ class Shark: Vehicle(), WaterTravel {
     }
 
     override fun travel(): String {
-        return "$id weighs $weight pound and travels via ${sail()}"
+        return "$id weighs $weight pound(s) and travels via ${sail()}"
     }
 }
 
@@ -97,7 +97,7 @@ class Jeep: Vehicle(), GroundTravel {
     }
 
     override fun travel(): String {
-        return "$id weighs $weight pound and travels via ${drive()}"
+        return "$id weighs $weight pound(s) and travels via ${drive()}"
     }
 }
 class Cheetah: Vehicle(), GroundTravel {
@@ -110,7 +110,7 @@ class Cheetah: Vehicle(), GroundTravel {
     }
 
     override fun travel(): String {
-        return "$id weighs $weight pound and travels via ${drive()}"
+        return "$id weighs $weight pound(s) and travels via ${drive()}"
     }
 }
 

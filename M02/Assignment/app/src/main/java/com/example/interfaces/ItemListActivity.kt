@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.example.interfaces.model.Dragon
 import com.example.interfaces.model.ListOfVehicles
 import com.example.interfaces.model.Vehicle
 import kotlinx.android.synthetic.main.activity_item_list.*
@@ -39,8 +40,10 @@ class ItemListActivity : AppCompatActivity() {
         toolbar.title = title
 
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+            Snackbar.make(view, "${ListOfVehicles.getVehicle["Dragon"]?.favorite}", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
+
+
         }
 
         if (item_detail_container != null) {
@@ -55,7 +58,7 @@ class ItemListActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView(recyclerView: RecyclerView) {
-        recyclerView.adapter = SimpleItemRecyclerViewAdapter(this, ListOfVehicles.getVehicles, twoPane)
+        recyclerView.adapter = SimpleItemRecyclerViewAdapter(this, ListOfVehicles.list, twoPane)
     }
 
     class SimpleItemRecyclerViewAdapter(
@@ -99,6 +102,7 @@ class ItemListActivity : AppCompatActivity() {
             val item = values[position]
             holder.idView.text = item.id
             holder.contentView.text = item.weight.toString()
+            holder.travel.text = item.travel()
 
             with(holder.itemView) {
                 tag = item
@@ -111,6 +115,7 @@ class ItemListActivity : AppCompatActivity() {
         inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             val idView: TextView = view.id_text
             val contentView: TextView = view.content
+            val travel = view.travel
         }
     }
 }

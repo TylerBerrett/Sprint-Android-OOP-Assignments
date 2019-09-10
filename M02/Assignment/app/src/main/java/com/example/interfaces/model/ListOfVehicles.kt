@@ -1,7 +1,8 @@
 package com.example.interfaces.model
 
 object ListOfVehicles {
-    val getVehicles = mutableListOf(
+    val getVehicle: MutableMap<String, Vehicle> = HashMap()
+    val list = arrayListOf<Vehicle>(
         Plane(),
         Dragon(),
         MasterCraft(),
@@ -9,4 +10,11 @@ object ListOfVehicles {
         Jeep(),
         Cheetah()
     )
+
+    init {
+
+        list.forEach {
+            getVehicle[it.id] = it
+        }
+    }
 }
