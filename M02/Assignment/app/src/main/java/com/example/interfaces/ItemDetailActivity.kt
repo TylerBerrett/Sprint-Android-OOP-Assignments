@@ -1,12 +1,10 @@
-package com.lambdaschool.abstractionintpoly
+package com.example.interfaces
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.MenuItem
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
-import com.lambdaschool.abstractionintpoly.model.SwApiObject
+import androidx.appcompat.app.AppCompatActivity
+import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_item_detail.*
 
 /**
@@ -15,23 +13,15 @@ import kotlinx.android.synthetic.main.activity_item_detail.*
  * item details are presented side-by-side with a list of items
  * in a [ItemListActivity].
  */
-class ItemDetailActivity : AppCompatActivity(), ItemDetailFragment.DetailResponse {
-
-    override fun provideInfoForObject(info: String) {
-        Toast.makeText(this, "info from $info", Toast.LENGTH_SHORT).show()
-    }
+class ItemDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item_detail)
         setSupportActionBar(detail_toolbar)
 
-        val swObject =
-            (intent.getSerializableExtra(ItemDetailFragment.ARG_ITEM_ID) as SwApiObject)
-
         fab.setOnClickListener { view ->
-            // TODO 12: Show a Snackbar with object info
-            Snackbar.make(view, swObject.info(), Snackbar.LENGTH_LONG)
+            Snackbar.make(view, "Replace with your own detail action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
 
@@ -52,9 +42,9 @@ class ItemDetailActivity : AppCompatActivity(), ItemDetailFragment.DetailRespons
             // using a fragment transaction.
             val fragment = ItemDetailFragment().apply {
                 arguments = Bundle().apply {
-                    putSerializable(
+                    putString(
                         ItemDetailFragment.ARG_ITEM_ID,
-                        intent.getSerializableExtra(ItemDetailFragment.ARG_ITEM_ID)
+                        intent.getStringExtra(ItemDetailFragment.ARG_ITEM_ID)
                     )
                 }
             }
@@ -79,6 +69,4 @@ class ItemDetailActivity : AppCompatActivity(), ItemDetailFragment.DetailRespons
             }
             else -> super.onOptionsItemSelected(item)
         }
-
-    // TODO 15: Implement the Fragment interface
 }
