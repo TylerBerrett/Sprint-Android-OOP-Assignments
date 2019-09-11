@@ -3,9 +3,19 @@ package com.example.generics
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import io.reactivex.Observable
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), Callback<Movies> {
+    override fun onFailure(call: Call<Movies>, t: Throwable) {
+
+    }
+
+    override fun onResponse(call: Call<Movies>, response: Response<Movies>) {
+        if (response.isSuccessful) { println(response.body()) }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         //Type mismatch: inferred type is String but Double was expected
         //lizard("234.3")
 
+        FakeApi.fakeMovieCall.enqueue(this)
 
 
     }
@@ -62,7 +73,6 @@ class MainActivity : AppCompatActivity() {
     val actorObservable = Observable.just(ryanReynolds, hughJackman)
     //actorObservable.subscribe { println(it) }
 
-    
 
 
 
