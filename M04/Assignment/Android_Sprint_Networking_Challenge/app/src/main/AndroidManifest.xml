@@ -12,9 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PokemonEdit"></activity>
-        <activity android:name=".PokemonAbout" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".view.PokemonEdit"></activity>
+        <activity android:name=".view.PokemonAbout" />
+        <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

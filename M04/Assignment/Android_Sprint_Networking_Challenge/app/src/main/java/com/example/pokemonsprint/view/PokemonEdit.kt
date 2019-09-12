@@ -1,8 +1,10 @@
-package com.example.pokemonsprint
+package com.example.pokemonsprint.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.pokemonsprint.model.PassPokemon
+import com.example.pokemonsprint.R
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_pokemon_edit.*
 

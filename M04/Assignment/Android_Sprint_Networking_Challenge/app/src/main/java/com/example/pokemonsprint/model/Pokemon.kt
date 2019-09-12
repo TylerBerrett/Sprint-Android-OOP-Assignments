@@ -1,4 +1,4 @@
-package com.example.pokemonsprint
+package com.example.pokemonsprint.model
 
 import java.io.Serializable
 

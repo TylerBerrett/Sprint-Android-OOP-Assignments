@@ -1,11 +1,17 @@
-package com.example.pokemonsprint
+package com.example.pokemonsprint.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.SearchView
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.pokemonsprint.*
+import com.example.pokemonsprint.databinding.ActivityMainBinding
+import com.example.pokemonsprint.model.PassPokemon
+import com.example.pokemonsprint.model.Pokemon
+import com.example.pokemonsprint.viewmodel.ViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -17,6 +23,7 @@ class MainActivity : AppCompatActivity(), Callback<Pokemon> {
         var PokemonNameNumber = ""
         val POKEMON_INTENT_KEY = "treecko"
         val POKEMON_EDIT = "nice"
+        var pokemonViewModel: PassPokemon? = null
     }
 
     override fun onFailure(call: Call<Pokemon>, t: Throwable) {
@@ -26,7 +33,6 @@ class MainActivity : AppCompatActivity(), Callback<Pokemon> {
 
     override fun onResponse(call: Call<Pokemon>, response: Response<Pokemon>) {
         if (response.isSuccessful){
-            println(response.body())
 
             val pokemon = response.body() as Pokemon
 
@@ -40,9 +46,16 @@ class MainActivity : AppCompatActivity(), Callback<Pokemon> {
                 pokemonType.add(it.type.name)
             }
 
-            val passPokemon = PassPokemon(pokemon.name, pokemon.sprites.front_default, pokemon.id, pokemonAbility, pokemonType)
+            val passPokemon = PassPokemon(
+                pokemon.name,
+                pokemon.sprites.front_default,
+                pokemon.id,
+                pokemonAbility,
+                pokemonType
+            )
 
             val intent = Intent(this, PokemonAbout::class.java)
+            pokemonViewModel = passPokemon
             intent.putExtra(POKEMON_INTENT_KEY, passPokemon)
             startActivity(intent)
         } else {
@@ -55,10 +68,13 @@ class MainActivity : AppCompatActivity(), Callback<Pokemon> {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        val activityMainBinding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        activityMainBinding.viewModel = ViewModel(this)
+        activityMainBinding.executePendingBindings()
 
         recycler_view.layoutManager = LinearLayoutManager(this)
         recycler_view.adapter = PokemonRecycler(PokemonAbout.pokemonList)
+
 
 
         search_bar.setOnQueryTextListener(object: SearchView.OnQueryTextListener{

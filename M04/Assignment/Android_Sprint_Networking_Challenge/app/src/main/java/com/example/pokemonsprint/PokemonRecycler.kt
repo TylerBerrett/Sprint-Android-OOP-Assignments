@@ -6,6 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pokemonsprint.model.PassPokemon
+import com.example.pokemonsprint.view.MainActivity
+import com.example.pokemonsprint.view.PokemonEdit
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.card_view.view.*
 
